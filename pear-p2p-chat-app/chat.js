@@ -3,6 +3,7 @@ const Hyperswarm = require('hyperswarm');
 const Hypercore = require('hypercore');
 const crypto = require('crypto');
 const readline = require('readline');
+const ram = require('random-access-memory'); // Added random-access-memory
 
 // --- Hyperswarm Setup ---
 const topicString = 'pear-friend-connect-chat-app-v3'; // New topic for profile version
@@ -12,7 +13,8 @@ console.log(`Chat Topic: ${topic.toString('hex')}`);
 const swarm = new Hyperswarm();
 
 // --- Local Hypercore Setup ---
-const localCore = new Hypercore(null, { valueEncoding: 'utf-8', persist: false });
+// Updated to use ram for storage
+const localCore = new Hypercore(ram, { valueEncoding: 'utf-8', persist: false });
 
 // --- Readline Interface for User Input ---
 const rl = readline.createInterface({
@@ -81,7 +83,8 @@ async function main() {
           console.log(`\n[System] Received Hypercore key and username from ${peerName} (Key: ${remoteHypercoreKey.substring(0, 6)}...)`);
 
           // Initialize Remote Hypercore for reading
-          remoteCore = new Hypercore(null, remoteHypercoreKey, { 
+          // Updated to use ram for storage
+          remoteCore = new Hypercore(ram, remoteHypercoreKey, { 
             valueEncoding: 'utf-8', 
             persist: false,
             sparse: true
