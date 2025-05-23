@@ -12,10 +12,10 @@
   "dependencies": {
     "hypercore": "^11.8.2",
     "hyperdht": "^6.20.5",
-    "hyperswarm": "^4.11.7"
+    "hyperswarm": "^4.11.7",
+    "random-access-memory": "^6.2.1"
   },
   "devDependencies": {
-    "random-access-memory": "^6.2.1",
     "tape": "^5.9.0"
   }
 }
